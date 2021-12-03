@@ -3,6 +3,7 @@ import kotlin.io.path.readLines
 
 class Day02 {
     companion object {
+
         fun part1(): Any {
             val mapped =
                 Path("inputs/day02.txt").readLines()

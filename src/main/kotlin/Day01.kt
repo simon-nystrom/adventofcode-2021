@@ -6,18 +6,17 @@ class Day01 {
         fun part1(): Int {
             return Path("inputs/day01.txt").readLines().map { it.toInt() }
                 .windowed(2)
-                .fold(0) { acc, window -> if (window[1] > window[0]) acc + 1 else acc }
+                .count { it[1] > it[0] }
         }
 
         fun part2(): Int {
             return Path("inputs/day01.txt").readLines().map { it.toInt() }
                 .windowed(3)
                 .windowed(2)
-                .fold(0) { acc, windows -> if (windows[1].sum() > windows[0].sum()) acc + 1 else acc }
+                .count { it[1].sum() > it[0].sum() }
         }
     }
 }
-
 
 
 fun main(args: Array<String>) {
