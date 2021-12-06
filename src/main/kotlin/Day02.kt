@@ -14,7 +14,7 @@ class Day02 {
 
         }
 
-        fun part2(): Any {
+        fun part2(): Int {
 
             val submarine = object {
                 var aim = 0

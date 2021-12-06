@@ -12,21 +12,7 @@ class Day04 {
             return false
         }
 
-        fun part1(): Int {
-            val lines = Path("inputs/day04.txt").readLines()
-            val nums = lines.first().split(",").map { it.toInt() }
-
-            var bingoBoards = lines.asSequence()
-                .drop(1)
-                .filter { it.isNotEmpty() }
-                .map { it.split("""\s+""".toRegex()) }
-                .flatten()
-                .filter { it.isNotEmpty() }
-                .map { it.toInt() }
-                .chunked(5) { it.toMutableList() }
-                .chunked(5)
-                .toList()
-
+        fun part1(nums: List<Int>, bingoBoards: List<List<MutableList<Int>>>): Int {
             for (num in nums) {
                 for (board in bingoBoards) {
                     for (row in board) {
@@ -40,26 +26,12 @@ class Day04 {
                         return board.sumOf { it.sumOf { n -> if (n == -1) 0 else n } } * num
                 }
             }
-
             return -1
         }
 
 
-        fun part2(): Any? {
-            val lines = Path("inputs/day04.txt").readLines()
-            val nums = lines.first().split(",").map { it.toInt() }
-
-            val bingoBoards = lines.asSequence().drop(1)
-                .filter { it.isNotEmpty() }
-                .map { it.split("""\s+""".toRegex()) }
-                .flatten()
-                .filter { it.isNotEmpty() }
-                .map { it.toInt() }
-                .windowed(5, 5) { it.toMutableList() }
-                .windowed(5, 5).toList()
-
+        fun part2(nums: List<Int>, bingoBoards: List<List<MutableList<Int>>>): Any? {
             val wonBoards = mutableSetOf<Int>()
-
             for (num in nums) {
                 for ((boardIndex, board) in bingoBoards.withIndex()) {
                     for (row in board) {
@@ -69,16 +41,13 @@ class Day04 {
                             }
                         }
                     }
-
                     if (boardIndex !in wonBoards && checkWinner(board)) {
                         wonBoards.add(boardIndex)
                     }
-
                     if (wonBoards.size == bingoBoards.size) {
                         return board.sumOf { it.sumOf { n -> if (n == -1) 0 else n } } * num
                     }
                 }
-
             }
             return -1
         }
@@ -87,7 +56,19 @@ class Day04 {
 
 
 fun main(args: Array<String>) {
+    val lines = Path("inputs/day04.txt").readLines()
+    val nums = lines.first().split(",").map { it.toInt() }
+    var bingoBoards = lines.asSequence()
+        .drop(1)
+        .filter { it.isNotEmpty() }
+        .map { it.split("""\s+""".toRegex()) }
+        .flatten()
+        .filter { it.isNotEmpty() }
+        .map { it.toInt() }
+        .chunked(5) { it.toMutableList() }
+        .chunked(5)
+        .toList()
 
-    println(Day04.part1()!!)
-    println(Day04.part2())
+    println(Day04.part1(nums, bingoBoards))
+    println(Day04.part2(nums, bingoBoards))
 }

@@ -1,11 +1,10 @@
-import java.util.*
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
 
 class Day03 {
     companion object {
 
-        fun part1(): Any {
+        fun part1(): Int {
             val lines = Path("inputs/day03.txt").readLines()
 
             val (gamma, epsilon) = lines.first().indices
@@ -21,7 +20,7 @@ class Day03 {
             return gamma.toInt(2) * epsilon.toInt(2)
         }
 
-        fun part2(): Any? {
+        fun part2(): Int {
             val lines = Path("inputs/day03.txt").readLines()
 
             var ox = 0
