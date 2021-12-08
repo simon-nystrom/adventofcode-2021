@@ -32,9 +32,6 @@ class Day07 {
 fun main(args: Array<String>) {
     val input = Path("inputs/day07.txt")
         .readText().split(",").map { it.toInt() }
-
     println(Day07.part1(input))
     println(Day07.part2(input))
-
-
 }
