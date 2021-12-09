@@ -37,12 +37,11 @@ class Day09 {
             if ("$y,$x" in visited) return 0
 
             visited.add("$y,$x")
-
-            var size = 0
-            if (x < grid[y].size) size += explore(x + 1, y, grid, visited)
-            if (y < grid.size) size += explore(x, y + 1, grid, visited)
-            if (x > 0) size += explore(x - 1, y, grid, visited)
-            if (y > 0) size += explore(x, y - 1, grid, visited)
+            
+            if (x < grid[y].size) explore(x + 1, y, grid, visited)
+            if (y < grid.size) explore(x, y + 1, grid, visited)
+            if (x > 0) explore(x - 1, y, grid, visited)
+            if (y > 0) explore(x, y - 1, grid, visited)
 
             return visited.size
 
